@@ -15,25 +15,21 @@ public class User {
         return rank;
     }
     public void incProgress(int r){
-        if(r<-8 ||r>8||r==0){
+        if(r<-8 ||r>8||r==0){ //illegal argument
             throw new IllegalArgumentException("The rank of an activity cannot be less than 8, 0, or greater than 8!");
         }
-        System.out.println(rank+" "+r+" "+progress);
-        if(r==rank){
+
+        if(r==rank){ //same rank
             progress+=3;
-        }else if(r<rank-1 &&!(rank>0 && r<0)){
+        }else if(r<rank-1 &&!(rank>0 && r<0)){ //more than 2 smaller than  rank
             progress+=0;
-        }else if(r<rank){
-//            rankif (rank>0 && r<0){
-//                r+=1;
-//            }
+        }else if(r<rank){ //less than rank but not more than 2 less
             progress+=1;
-        }else{
-            if(rank<0 && r>0){
+        }else{ //other condition
+            if(rank<0 && r>0){ //when rank 0 dosen't count
                 r-=1;
             }
             r = r-this.rank;
-
             this.progress+=r*r*10;
 
         }
